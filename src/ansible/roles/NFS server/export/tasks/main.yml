@@ -1,0 +1,9 @@
+# https://ubuntu.com/server/docs/service-nfs
+
+- name: Export directory
+  ansible.builtin.lineinfile:
+    path: /etc/exports
+    regexp: '^{{ mountpoint }}'
+    line: "{{ mountpoint }}     *(rw,sync,no_subtree_check)"
+    create: true
+  become: true
