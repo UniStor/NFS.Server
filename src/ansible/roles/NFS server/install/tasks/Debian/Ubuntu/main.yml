@@ -1,0 +1,7 @@
+---
+- name: Install NFS server
+  ansible.builtin.apt:
+    pkg:
+    - nfs-kernel-server
+  become: true
+  notify: Start nfs-kernel-server

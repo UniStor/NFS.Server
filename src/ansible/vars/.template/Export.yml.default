@@ -1,0 +1,2 @@
+volume_name: stor0
+export: "/media/{{ ansible_env.USER }}/{{ volume_name }}"

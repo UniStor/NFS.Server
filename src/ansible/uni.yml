@@ -1,0 +1,5 @@
+- hosts: stor # localhost
+  vars_files:
+    - vars/Export.yml
+  roles:
+  - NFS server
