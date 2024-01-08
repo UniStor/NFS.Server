@@ -6,4 +6,5 @@
     regexp: '^{{ mountpoint }}'
     line: "{{ mountpoint }}     *(rw,sync,no_subtree_check)"
     create: true
+  notify: Apply export changes
   become: true

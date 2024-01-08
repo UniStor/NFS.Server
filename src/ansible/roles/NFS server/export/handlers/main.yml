@@ -1,0 +1,3 @@
+- name: Apply export changes
+  ansible.builtin.shell: exportfs -a
+  become: true
