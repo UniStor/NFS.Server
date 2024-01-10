@@ -1,6 +1,6 @@
 # https://ubuntu.com/server/docs/service-nfs
 
-- name: Symlink origin for cleaner export paths
+- name: Symlink origin for cleaner export paths  # https://access.redhat.com/solutions/8098
   ansible.builtin.file:
     src: "{{ origin }}"
     dest: "{{ export }}"
@@ -13,11 +13,9 @@
 - name: Export directory
   ansible.builtin.blockinfile:
     path: /etc/exports
-    append_newline: true
-    prepend_newline: true
-    marker: "# export number {{ number }}"
+    marker: "# export number {{ number }} {mark}"
     block: |
-      "{{ export }}     *(rw,sync,no_subtree_check)"
+      {{ export }}     *(rw,sync,no_subtree_check)
     create: true
   notify: Apply export changes
   become: true
