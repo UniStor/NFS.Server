@@ -1,3 +1,10 @@
 - name: Apply export changes
   ansible.builtin.shell: exportfs -a
   become: true
+
+- name: Restart NFS server debian
+  become: true
+  ansible.builtin.systemd_service:
+    state: restarted
+    daemon_reload: true
+    name: nfs-server

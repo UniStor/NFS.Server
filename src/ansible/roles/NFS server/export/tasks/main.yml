@@ -17,5 +17,7 @@
     block: |
       {{ export }}     *(rw,sync,no_subtree_check)
     create: true
-  notify: Apply export changes
+  notify:
+  - Apply export changes
+  - Restart NFS server debian
   become: true
