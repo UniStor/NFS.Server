@@ -1,3 +1,0 @@
-dependencies:
-  - .test/create x11vnc desktop
-  - .test/connect vncviewer
