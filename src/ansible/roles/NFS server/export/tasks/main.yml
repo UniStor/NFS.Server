@@ -1,10 +1,23 @@
 # https://ubuntu.com/server/docs/service-nfs
 
+- name: Symlink origin for cleaner export paths
+  ansible.builtin.file:
+    src: "{{ origin }}"
+    dest: "{{ export }}"
+    owner: "{{ ansible_env.USER }}"
+    group: "{{ ansible_env.USER }}"
+    state: link
+  when: origin != export
+  become: true
+
 - name: Export directory
-  ansible.builtin.lineinfile:
+  ansible.builtin.blockinfile:
     path: /etc/exports
-    regexp: '^{{ mountpoint }}'
-    line: "{{ mountpoint }}     *(rw,sync,no_subtree_check)"
+    append_newline: true
+    prepend_newline: true
+    marker: "# export number {{ number }}"
+    block: |
+      "{{ export }}     *(rw,sync,no_subtree_check)"
     create: true
   notify: Apply export changes
   become: true

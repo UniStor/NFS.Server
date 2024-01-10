@@ -1,3 +1,4 @@
 volume_name: stor0
-mountpoint: "/media/{{ ansible_env.USER }}/{{ volume_name }}"
-export: todo
+origin: "/media/{{ ansible_env.USER }}/{{ volume_name }}"
+export: "/srv/{{ volume_name }}"
+number: 0
