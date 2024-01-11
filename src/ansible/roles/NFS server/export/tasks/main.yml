@@ -21,7 +21,7 @@
     path: /etc/exports
     marker: "# export number {{ number }} {mark}"
     block: |
-      {{ export }}     *(rw,sync,no_subtree_check)
+      {{ export }}     {{ options }}
     create: true
   notify:
   - Apply export changes

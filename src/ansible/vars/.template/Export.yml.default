@@ -2,3 +2,4 @@ volume_name: stor0
 origin: "/media/{{ ansible_env.USER }}/{{ volume_name }}"
 export: "/srv/{{ volume_name }}"
 number: 0
+options: "*(rw,insecure,sync,no_subtree_check,no_root_squash)"
