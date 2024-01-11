@@ -1,14 +1,14 @@
 # https://ubuntu.com/server/docs/service-nfs
 
-- name: Symlink origin for cleaner export path  # https://access.redhat.com/solutions/8098
-  ansible.builtin.file:
-    src: "{{ origin }}"
-    dest: "{{ export }}"
-    owner: "{{ ansible_env.USER }}"
-    group: "{{ ansible_env.USER }}"
-    state: link
-  when: origin != export
+- name: Bind mount origin for cleaner export path
   become: true
+  ansible.posix.mount:
+    path: "{{ export }}"
+    src: "{{ origin }}"
+    opts: bind
+    state: mounted
+    fstype: none
+  when: origin != export
 
 - name: Export directory
   ansible.builtin.blockinfile:
