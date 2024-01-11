@@ -1,5 +1,11 @@
 # https://ubuntu.com/server/docs/service-nfs
 
+- name: Create origin directory if it does not exist
+  ansible.builtin.file:
+    path: "{{ origin }}"
+    state: directory
+    mode: '0755'
+
 - name: Bind mount origin for cleaner export path
   become: true
   ansible.posix.mount:
